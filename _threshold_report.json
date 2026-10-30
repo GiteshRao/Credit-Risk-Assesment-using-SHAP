@@ -1,0 +1,67 @@
+{
+  "rows_after_cleaning": 31522,
+  "train_rows": 25217,
+  "test_rows": 6305,
+  "scale_pos_weight": 3.631221,
+  "stage_a_threshold_uncalibrated_oof": 0.693848,
+  "stage_b_threshold_calibrated_oof": 0.665585,
+  "previous_threshold": 0.695198,
+  "metrics": [
+    {
+      "stage": "A_train_oof_uncalibrated",
+      "threshold": 0.693848,
+      "accuracy": 0.9336,
+      "precision": 0.9345,
+      "recall": 0.7447,
+      "f1": 0.8289,
+      "roc_auc": 0.9478,
+      "average_precision": 0.9031,
+      "tn": 19488,
+      "fp": 284,
+      "fn": 1390,
+      "tp": 4055
+    },
+    {
+      "stage": "B_train_oof_calibrated",
+      "threshold": 0.665585,
+      "accuracy": 0.9357,
+      "precision": 0.9554,
+      "recall": 0.7365,
+      "f1": 0.8318,
+      "roc_auc": 0.9482,
+      "average_precision": 0.9038,
+      "tn": 19585,
+      "fp": 187,
+      "fn": 1435,
+      "tp": 4010
+    },
+    {
+      "stage": "C_test_at_new_threshold",
+      "threshold": 0.665585,
+      "accuracy": 0.937,
+      "precision": 0.9582,
+      "recall": 0.7408,
+      "f1": 0.8356,
+      "roc_auc": 0.9528,
+      "average_precision": 0.9102,
+      "tn": 4899,
+      "fp": 44,
+      "fn": 353,
+      "tp": 1009
+    },
+    {
+      "stage": "C_test_at_old_threshold",
+      "threshold": 0.695198,
+      "accuracy": 0.9367,
+      "precision": 0.9634,
+      "recall": 0.7349,
+      "f1": 0.8338,
+      "roc_auc": 0.9528,
+      "average_precision": 0.9102,
+      "tn": 4905,
+      "fp": 38,
+      "fn": 361,
+      "tp": 1001
+    }
+  ]
+}

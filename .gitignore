@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+
+# Local-only backups written by the maintenance scripts
+_backup/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db

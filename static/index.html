@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Credit Ledger — Loan Risk Assessment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#top" aria-label="Credit Ledger">
+    <svg class="nav__seal" viewBox="0 0 40 40" aria-hidden="true">
+      <circle cx="20" cy="20" r="18" />
+      <circle cx="20" cy="20" r="12" />
+      <path d="M20 10 L20 30 M10 20 L30 20" />
+    </svg>
+    <span>Credit Ledger</span>
+  </a>
+  <nav class="nav__links" aria-label="Sections">
+    <a href="#how">How it works</a>
+    <a href="#assess">Assess</a>
+  </nav>
+  <div class="masthead__status" id="apiStatus">
+    <span class="dot" id="apiDot"></span>
+    <span id="apiStatusText">checking service…</span>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="hero__sticky">
+      <div class="hero__aurora" aria-hidden="true"></div>
+
+      <div class="hero__copy">
+        <p class="eyebrow reveal-up" style="--d:0ms">Underwriting desk · Consumer loans</p>
+        <h1 class="hero__title">
+          <span class="line"><span class="line__in" style="--d:80ms">Know the risk</span></span>
+          <span class="line"><span class="line__in" style="--d:200ms">before you <em>lend.</em></span></span>
+        </h1>
+        <p class="hero__sub reveal-up" style="--d:380ms">
+          Eleven signals in. One calibrated default probability out. A model-backed read on every loan application, in seconds.
+        </p>
+        <div class="hero__cta reveal-up" style="--d:520ms">
+          <a class="btn btn--primary" href="#assess">Start an assessment</a>
+          <a class="btn btn--ghost" href="#how">See how it works</a>
+        </div>
+      </div>
+
+      <div class="hero__stage" id="stage">
+        <div class="stage__halo" aria-hidden="true"></div>
+        <div class="stage__tilt" id="stageTilt">
+          <img class="stage__gif" id="stageGif" src="assets/cards.gif" alt="Layered translucent credit cards floating in 3D space" width="640" height="371" />
+        </div>
+        <div class="chip chip--a" data-depth="40"><b>11</b> input signals</div>
+        <div class="chip chip--b" data-depth="70"><b>&lt;1s</b> response</div>
+        <div class="chip chip--c" data-depth="25"><b>0–100%</b> default odds</div>
+      </div>
+
+      <a class="scroll-cue" href="#how" aria-label="Scroll down">
+        <span class="scroll-cue__mouse"><span></span></span>
+        <span>Scroll</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="how" id="how">
+    <div class="wrap">
+      <p class="eyebrow" data-reveal>How it works</p>
+      <h2 class="h2" data-reveal>Three layers. <em>One verdict.</em></h2>
+
+      <div class="layers">
+        <article class="layer" data-reveal data-tilt style="--hue:var(--c-blue)">
+          <span class="layer__n">01</span>
+          <h3>Applicant</h3>
+          <p>Age, income, housing and employment tell us how stable the borrower's footing is.</p>
+        </article>
+        <article class="layer" data-reveal data-tilt style="--hue:var(--c-peach);--rd:120ms">
+          <span class="layer__n">02</span>
+          <h3>Loan request</h3>
+          <p>Purpose, grade, amount, rate and burden relative to income shape the exposure.</p>
+        </article>
+        <article class="layer" data-reveal data-tilt style="--hue:var(--c-coral);--rd:240ms">
+          <span class="layer__n">03</span>
+          <h3>Bureau file</h3>
+          <p>Prior defaults and credit history length add the track-record context.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ASSESS ============ -->
+  <section class="assess" id="assess">
+    <div class="wrap wrap--narrow">
+      <p class="eyebrow" data-reveal>Assessment</p>
+      <h2 class="h2" data-reveal>Fill the file. <em>Get the odds.</em></h2>
+
+      <form class="ledger" id="riskForm" novalidate>
+
+        <fieldset class="ledger__section" data-reveal data-card>
+          <legend><span class="legend__n">01</span> Applicant</legend>
+
+          <div class="row">
+            <label for="person_age">Age</label>
+            <div class="field">
+              <input type="number" id="person_age" name="person_age" min="18" max="100" step="1" value="30" required />
+              <span class="unit">years</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="person_income">Annual income</label>
+            <div class="field">
+              <span class="unit unit--prefix">₹</span>
+              <input type="number" id="person_income" name="person_income" min="0" step="1000" value="600000" required />
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="person_home_ownership">Home ownership</label>
+            <div class="field">
+              <select id="person_home_ownership" name="person_home_ownership" required>
+                <option value="RENT">Renting</option>
+                <option value="MORTGAGE">Mortgage</option>
+                <option value="OWN">Owns outright</option>
+                <option value="OTHER">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="person_emp_length">Employment length</label>
+            <div class="field">
+              <input type="number" id="person_emp_length" name="person_emp_length" min="0" max="60" step="0.5" value="5" required />
+              <span class="unit">years</span>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="ledger__section" data-reveal data-card>
+          <legend><span class="legend__n">02</span> Loan request</legend>
+
+          <div class="row">
+            <label for="loan_intent">Purpose</label>
+            <div class="field">
+              <select id="loan_intent" name="loan_intent" required>
+                <option value="PERSONAL">Personal</option>
+                <option value="EDUCATION">Education</option>
+                <option value="MEDICAL">Medical</option>
+                <option value="VENTURE">Venture</option>
+                <option value="HOMEIMPROVEMENT">Home improvement</option>
+                <option value="DEBTCONSOLIDATION">Debt consolidation</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="loan_grade">Loan grade</label>
+            <div class="field">
+              <select id="loan_grade" name="loan_grade" required>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="G">G</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="loan_amnt">Loan amount</label>
+            <div class="field">
+              <span class="unit unit--prefix">₹</span>
+              <input type="number" id="loan_amnt" name="loan_amnt" min="0" step="500" value="100000" required />
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="loan_int_rate">Interest rate</label>
+            <div class="field">
+              <input type="number" id="loan_int_rate" name="loan_int_rate" min="0" max="40" step="0.01" value="11.5" required />
+              <span class="unit">%</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="loan_percent_income">Loan as % of income</label>
+            <div class="field">
+              <input type="number" id="loan_percent_income" name="loan_percent_income" min="0" max="1" step="0.01" value="0.17" required />
+              <span class="unit">ratio</span>
+            </div>
+          </div>
+          <p class="hint" id="percentHint">Calculated from income and loan amount — edit if you need to override it.</p>
+        </fieldset>
+
+        <fieldset class="ledger__section" data-reveal data-card>
+          <legend><span class="legend__n">03</span> Credit bureau file</legend>
+
+          <div class="row">
+            <label for="cb_person_default_on_file">Prior default on file</label>
+            <div class="field">
+              <select id="cb_person_default_on_file" name="cb_person_default_on_file" required>
+                <option value="N">No</option>
+                <option value="Y">Yes</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="cb_person_cred_hist_length">Credit history length</label>
+            <div class="field">
+              <input type="number" id="cb_person_cred_hist_length" name="cb_person_cred_hist_length" min="0" max="60" step="1" value="6" required />
+              <span class="unit">years</span>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="submit-row" data-reveal>
+          <button type="submit" id="submitBtn">
+            <span class="btn-label">Assess risk</span>
+            <span class="btn-spinner" aria-hidden="true"></span>
+          </button>
+          <p class="error-note" id="errorNote" role="alert" hidden></p>
+        </div>
+
+      </form>
+
+      <section class="verdict" id="verdict" aria-live="polite" hidden>
+        <div class="verdict__inner">
+
+          <div class="verdict__gauge">
+            <svg viewBox="0 0 200 200" class="gauge">
+              <defs>
+                <linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#8fa6ff" />
+                  <stop offset="55%" stop-color="#ffb48a" />
+                  <stop offset="100%" stop-color="#ff6a4d" />
+                </linearGradient>
+              </defs>
+              <circle class="gauge__track" cx="100" cy="100" r="86" />
+              <circle class="gauge__fill" id="gaugeFill" cx="100" cy="100" r="86" />
+              <line class="gauge__threshold" id="gaugeThreshold" x1="100" y1="14" x2="100" y2="30" />
+            </svg>
+            <div class="gauge__readout">
+              <span class="gauge__number" id="probNumber">0</span><span class="gauge__percent">%</span>
+              <span class="gauge__caption">default probability</span>
+            </div>
+          </div>
+
+          <div class="verdict__detail">
+            <div class="stamp-wrap">
+              <div class="stamp" id="stampBadge">
+                <span id="stampText">LOW RISK</span>
+              </div>
+            </div>
+
+            <dl class="ledger-facts">
+              <div>
+                <dt>Default probability</dt>
+                <dd id="factProb">—</dd>
+              </div>
+              <div>
+                <dt>Decision threshold</dt>
+                <dd id="factThreshold">—</dd>
+              </div>
+              <div>
+                <dt>Model verdict</dt>
+                <dd id="factResult">—</dd>
+              </div>
+            </dl>
+          </div>
+
+        </div>
+      </section>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <p>Figures are model estimates, not a lending decision. Recorded for reference only.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
